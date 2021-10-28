@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/app.min.css" />
+        <title>CSRF Demo - Nhóm CSRF</title>
+    </head>
+    <body>
+        <div class="flex flex-col items-center justify-center w-screen h-screen bg-gray-200 text-gray-700">
+            <form class="flex flex-col bg-white rounded shadow-lg p-12 mt-12" action="" method="POST">
+                <label class="font-semibold text-xs" for="username">Tên đăng nhập</label>
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"
+                />
+                <label class="font-semibold text-xs mt-3" for="password">Mật khẩu</label>
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"
+                />
+                <button
+                    class="
+                        flex
+                        items-center
+                        justify-center
+                        h-12
+                        px-6
+                        w-64
+                        bg-blue-600
+                        mt-8
+                        rounded
+                        font-semibold
+                        text-sm text-blue-100
+                        hover:bg-blue-700
+                    "
+                >
+                    Đăng nhập
+                </button>
+                <div class="flex mt-6 justify-center text-xs">
+                    <a class="text-blue-400 hover:text-blue-500" href="#">Quên mật khẩu?</a>
+                    <span class="mx-2 text-gray-300">/</span>
+                    <a class="text-blue-400 hover:text-blue-500" href="#">Đăng ký</a>
+                </div>
+            </form>
+            <!-- Component End  -->
+        </div>
+    </body>
+</html>

