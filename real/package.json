@@ -4,7 +4,8 @@
     "private": true,
     "scripts": {
         "start": "node ./src/bin/www",
-        "dev": "nodemon ./src/bin/www"
+        "dev": "nodemon ./src/bin/www",
+        "build:css": "postcss ./src/resources/css/app.css -o ./src/public/css/app.min.css"
     },
     "dependencies": {
         "cookie-parser": "~1.4.4",
@@ -15,9 +16,16 @@
         "morgan": "~1.9.1"
     },
     "devDependencies": {
+        "autoprefixer": "^10.3.7",
+        "cssnano": "^5.0.8",
         "eslint": "^7.32.0",
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-import": "^2.25.2"
+        "eslint-plugin-import": "^2.25.2",
+        "postcss": "^8.3.11",
+        "postcss-cli": "^9.0.1",
+        "postcss-import": "^14.0.2",
+        "postcss-nested": "^5.0.6",
+        "tailwindcss": "^2.2.17"
     }
 }
