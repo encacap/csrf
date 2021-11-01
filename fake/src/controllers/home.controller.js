@@ -1,9 +1,14 @@
 const path = require("path");
 
-const renderFakePage = async (req, res) => {
+const renderFakePage = (req, res) => {
     res.render(path.join("pages", "home"));
+};
+
+const renderFakePageUsingTag = (req, res) => {
+    res.render(path.join("pages", "tag"));
 };
 
 module.exports = {
     renderFakePage,
+    renderFakePageUsingTag,
 };

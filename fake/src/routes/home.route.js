@@ -4,7 +4,7 @@ const homeController = require("../controllers/home.controller");
 
 const router = express.Router();
 
-/* GET home page. */
+router.route("/tag").get(homeController.renderFakePageUsingTag);
 router.route("/").get(homeController.renderFakePage);
 
 module.exports = router;
