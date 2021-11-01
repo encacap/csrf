@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/app.min.css" />
+        <title>CSRF Demo - Nhóm CSRF</title>
+    </head>
+    <body>
+        <div class="grid grid-cols-2 w-screen h-screen bg-white overflow-hidden">
+            <div class="flex flex-col items-center justify-center text-gray-700 border-r-2 border-gray-100">
+                <form
+                    class="flex flex-col bg-white rounded shadow-md p-12 mt-12 border-2 border-gray-100"
+                    action=""
+                    method="POST"
+                >
+                    <% if (locals.validation?.token) {%>
+                    <input type="text" name="token" value="<%= locals.validation.token %>" readonly hidden />
+                    <% } %>
+                    <label class="font-semibold text-xs" for="receiver">Người nhận</label>
+                    <input
+                        type="text"
+                        name="receiver"
+                        id="receiver"
+                        required
+                        class="
+                            flex
+                            items-center
+                            h-12
+                            px-4
+                            w-64
+                            bg-gray-200
+                            mt-2
+                            rounded
+                            focus:outline-none focus:ring-2
+                        "
+                    />
+                    <label class="font-semibold text-xs mt-3" for="amount">Số tiền</label>
+                    <input
+                        type="number"
+                        name="amount"
+                        id="amount"
+                        required
+                        class="
+                            flex
+                            items-center
+                            h-12
+                            px-4
+                            w-64
+                            bg-gray-200
+                            mt-2
+                            rounded
+                            focus:outline-none focus:ring-2
+                        "
+                    />
+                    <button
+                        class="
+                            g-recaptcha
+                            flex
+                            items-center
+                            justify-center
+                            h-12
+                            px-6
+                            w-64
+                            bg-blue-600
+                            mt-8
+                            rounded
+                            font-semibold
+                            text-sm text-blue-100
+                            hover:bg-blue-700
+                        "
+                        data-sitekey="6LdHFAodAAAAAPpIfA5SCVSUlnVUp5aDGSo6oS33"
+                        data-callback="onSubmit"
+                        data-action="submit"
+                    >
+                        Chuyển tiền
+                    </button>
+                </form>
+            </div>
+            <div class="flex flex-col items-center justify-center text-gray-700">
+                <div class="flex flex-col">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 max-h-96 overflow-auto">
+                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                class="
+                                                    px-6
+                                                    py-3
+                                                    text-left text-xs
+                                                    font-medium
+                                                    text-gray-500
+                                                    uppercase
+                                                    tracking-wider
+                                                "
+                                            >
+                                                Người gửi
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="
+                                                    px-6
+                                                    py-3
+                                                    text-left text-xs
+                                                    font-medium
+                                                    text-gray-500
+                                                    uppercase
+                                                    tracking-wider
+                                                "
+                                            >
+                                                Người nhận
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="
+                                                    px-6
+                                                    py-3
+                                                    text-left text-xs
+                                                    font-medium
+                                                    text-gray-500
+                                                    uppercase
+                                                    tracking-wider
+                                                "
+                                            >
+                                                Số tiền
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="
+                                                    px-6
+                                                    py-3
+                                                    text-left text-xs
+                                                    font-medium
+                                                    text-gray-500
+                                                    uppercase
+                                                    tracking-wider
+                                                "
+                                            >
+                                                Thời gian
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <% locals.transactions.forEach(transaction => { %>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    <%= transaction.sender %>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    <%= transaction.receiver %>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900"><%= transaction.amount %></div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <%= transaction.date %>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script>
+            function onSubmit(token) {
+                document.querySelector("form").submit();
+            }
+        </script>
+    </body>
+</html>

@@ -37,7 +37,7 @@ const renderTransactionForm = async (req, res) => {
             },
         });
     } else {
-        res.render(path.join("pages", "home"), {
+        res.render(path.join("pages", "home_recaptcha"), {
             transactions,
         });
     }
@@ -54,7 +54,7 @@ const createTransaction = async (req, res, next) => {
                 throw new Error("Invalid token");
             }
         } catch (error) {
-            res.render(path.join("pages", "error"), { messge: error.message });
+            res.render(path.join("pages", "error"), { message: error.message });
             return;
         }
     }
@@ -67,7 +67,20 @@ const createTransaction = async (req, res, next) => {
     }
 };
 
+const createTransactionUsingGet = async (req, res, next) => {
+    const { receiver, amount } = req.query;
+    const { user } = req;
+    const transaction = new Transaction({ sender: user.username, receiver, amount });
+    try {
+        await transaction.save();
+        res.redirect("/");
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     renderTransactionForm,
     createTransaction,
+    createTransactionUsingGet,
 };
